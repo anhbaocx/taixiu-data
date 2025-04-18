@@ -1,0 +1,12 @@
+﻿{
+  "name": "taixiu-bot-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "firebase-admin": "^11.10.1",
+    "ws": "^8.13.0"
+  }
+}
