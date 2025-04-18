@@ -1,0 +1,27 @@
+name: Run Bot 24/7
+
+on:
+  push:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/10 * * * *'  # Chạy lại mỗi 10 phút
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run bot
+        env:
+          FIREBASE_KEY: ${{ secrets.FIREBASE_KEY }}
+        run: node index.js
