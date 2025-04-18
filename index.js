@@ -3,11 +3,15 @@ const { initializeApp, cert } = require("firebase-admin/app");
 const { getDatabase, ref, push } = require("firebase-admin/database");
 
 // Khởi tạo Firebase từ biến môi trường FIREBASE_KEY
+const admin = require("firebase-admin");
+
 const serviceAccount = JSON.parse(process.env.FIREBASE_KEY);
-initializeApp({
-  credential: cert(serviceAccount),
-  databaseURL: "https://taixiu-data-default-rtdb.firebaseio.com",
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://taixiu-data-default-rtdb.firebaseio.com"
 });
+
 
 const db = getDatabase();
 

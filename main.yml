@@ -1,0 +1,29 @@
+name: Bot Tài Xỉu 24/7
+
+on:
+  push:
+  workflow_dispatch:
+  schedule:
+    - cron: '*/15 * * * *'  # chạy lại mỗi 15 phút để giữ bot sống
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Clone repo
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Cài dependencies
+      run: npm install
+
+    - name: Run bot
+  run: node index.js
+  env:
+    FIREBASE_KEY: ${{ secrets.FIREBASE_KEY }}
+
